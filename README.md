@@ -10,3 +10,6 @@ The framework makes use of the following dependencies:
   * Guava rev19
   
 The project is compiled to and thus requires at least Java 7.
+
+#### Credits
+I would like to give credit to the [Tinke](https://github.com/pleonex/tinke) as it was used as a reference to figure out the complex data structures of the Nitro file system.
