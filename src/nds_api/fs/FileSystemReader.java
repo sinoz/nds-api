@@ -1,5 +1,6 @@
 package nds_api.fs;
 
+import nds_api.RomHeader;
 import nds_api.RomMapping;
 
 import java.io.IOException;
@@ -18,15 +19,30 @@ public final class FileSystemReader {
     private final RomMapping mapping;
 
     /**
+     * The {@link RomHeader}.
+     */
+    private final RomHeader header;
+
+    /**
      * Creates a new {@link FileSystemReader}.
      */
-    public FileSystemReader(RomMapping mapping) {
+    public FileSystemReader(RomMapping mapping, RomHeader header) {
         this.mapping = mapping;
+        this.header = header;
     }
 
     public FileSystem read() throws IOException {
-        // TODO
+        FileAllocTableEntry[] entries = new FileAllocTableEntry[header.getFatSize()];
+        for (int entryId = 0; entryId < entries.length; entryId++) {
+            int address = mapping.readUIntLE(header.getFatAddress() + (entryId << 2));
+            int size = mapping.readUIntLE() - address;
 
-        return new FileSystem();
+            entries[entryId] = new FileAllocTableEntry(address, size);
+        }
+        FileAllocTable fat = new FileAllocTable(entries);
+
+        // TODO FNT
+
+        return new FileSystem(fat);
     }
 }

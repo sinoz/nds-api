@@ -11,6 +11,7 @@ import java.io.IOException;
  * @author Whis
  *
  */
+@Deprecated
 public final class RomIdentifier {
     /**
      * The length of the rom game title in bytes.
