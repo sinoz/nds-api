@@ -5,7 +5,6 @@ import io.netty.buffer.Unpooled;
 import nds_api.util.StringReaders;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.nio.channels.FileChannel;
 
 /**
@@ -101,6 +100,13 @@ public final class RomMapping {
         readerIndex(address);
 
         return StringReaders.readString(buffer, length);
+    }
+
+    /**
+     * Reads and discards the given amount of bytes.
+     */
+    public void readAndDiscard(int length) {
+        buffer.readBytes(length);
     }
 
     /**

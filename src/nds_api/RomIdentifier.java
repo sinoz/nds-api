@@ -4,7 +4,9 @@ import java.io.IOException;
 
 /**
  *
- * Reads, identifies and translates the title chunk of the header to a {@link RomTitle}.
+ * Reads, identifies and translates the title chunk of the header to a {@link RomTitle}. This class
+ * may be used if only rom identification is required. You should prefer to use {@link RomHeaderReader}
+ * if you do not have the FAT and FNT addresses stored somewhere else to feed to the {@link RomHeaderReader}.
  *
  * @author Whis
  *
@@ -13,7 +15,7 @@ public final class RomIdentifier {
     /**
      * The length of the rom game title in bytes.
      */
-    private static final int TITLE_LENGTH = 18;
+    static final int TITLE_LENGTH = 18;
 
     /**
      * The {@link RomMapping} to read from.
