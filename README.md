@@ -1,6 +1,6 @@
 # NDS API
 A simple to use framework that allows users to extract or make raw use of resources such as images from NDS ROMs. The following file system formats are supported:
-  - [x] NARC (Nitro Archive)
+  - [ ] NARC (Nitro Archive)
   - [ ] BTX0 (Basic Texture)
   - [ ] NCGR (Nitro Graphic Resource)
   - [ ] NCLR (Nitro Colour Resource)
