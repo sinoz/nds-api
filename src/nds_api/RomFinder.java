@@ -29,6 +29,10 @@ public final class RomFinder {
      * Creates a new {@link RomFinder}.
      */
     public RomFinder(Path directory, String extension) {
+        if (!Files.exists(directory)) {
+            throw new IllegalArgumentException();
+        }
+
         this.directory = directory;
         this.extension = extension;
     }
