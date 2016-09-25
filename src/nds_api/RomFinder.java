@@ -2,10 +2,12 @@ package nds_api;
 
 import com.google.common.collect.ImmutableSet;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -24,6 +26,14 @@ public final class RomFinder {
      * The file extension to look for that might indicate a rom.
      */
     private final String extension;
+
+    /**
+     * Creates a new {@link RomFinder} that turns the given {@link File} to a
+     * proper {@link Path}.
+     */
+    public RomFinder(File directory, String extension) {
+        this(directory.toPath(), extension);
+    }
 
     /**
      * Creates a new {@link RomFinder}.

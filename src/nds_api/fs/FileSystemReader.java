@@ -41,7 +41,11 @@ public final class FileSystemReader {
         }
         FileAllocTable fat = new FileAllocTable(entries);
 
-        // TODO FNT
+        int rootTableOffset = mapping.readUIntLE(header.getFntAddress());
+        int somethingElse = mapping.readUShortLE();
+        int amtChildDirectories = mapping.readUShortLE();
+
+        // TODO
 
         return new FileSystem(fat);
     }
