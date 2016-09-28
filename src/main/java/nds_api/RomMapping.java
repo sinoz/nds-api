@@ -39,6 +39,23 @@ public final class RomMapping {
     }
 
     /**
+     * Maps a new {@link RomMapping} from this mapping starting at the given address and of the given size.
+     */
+    public RomMapping map(int address, int size) throws IOException {
+        if ((address + size) > buffer.capacity()) {
+            throw new IllegalArgumentException();
+        }
+
+        buffer.markReaderIndex();
+        buffer.readerIndex(address);
+
+        ByteBuf mapping = buffer.readBytes(size);
+        buffer.resetReaderIndex();
+
+        return new RomMapping(mapping);
+    }
+
+    /**
      * Reads an unsigned 8 bit value at the buffer's current reader index.
      */
     public int readUByte() {
