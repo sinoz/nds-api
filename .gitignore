@@ -12,6 +12,6 @@
 hs_err_pid*
 
 nds-api.iml
-/.idea/
-/roms/
+.idea
+roms/
 /out/

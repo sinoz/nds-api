@@ -23,6 +23,6 @@ public final class BasicTextureReader {
     public BasicTexture read() {
         // TODO
 
-        return new BasicTexture();
+        return new BasicTexture(null, null);
     }
 }
