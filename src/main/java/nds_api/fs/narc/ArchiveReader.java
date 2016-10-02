@@ -79,7 +79,7 @@ public final class ArchiveReader {
             throw new IOException();
         }
 
-        String fatStamp = mapping.readString(4);
+        String fatStamp = mapping.readString(FAT_EXT.length());
         if (!fatStamp.equals(FAT_EXT)) {
             throw new IOException();
         }
@@ -103,7 +103,7 @@ public final class ArchiveReader {
             sizes[entryId] = mapping.readUIntLE() - offsets[entryId];
         }
 
-        String fntStamp = mapping.readString(4);
+        String fntStamp = mapping.readString(FNT_EXT.length());
         if (!fntStamp.equals(FNT_EXT)) {
             throw new IOException();
         }
@@ -115,7 +115,7 @@ public final class ArchiveReader {
         for (int entryId = 0; entryId < amtFatEntries; entryId++) {
             int address = offsets[entryId] + entriesOffset;
             int size = sizes[entryId];
-            
+
             entries[entryId] = new FileAllocTableEntry(address, size);
         }
 

@@ -40,7 +40,7 @@ public final class FileSystemReader {
             entries[entryId] = new FileAllocTableEntry(address, size);
         }
 
-        // the file name tables aren't really necessary as we requesting files by id's is more efficient
+        // the file name tables aren't really necessary as requesting files by id's is more efficient
         // than by their corresponding name (there are roms that dont store names of files and therefore go by id instead)
 
         return new FileSystem(new FileAllocTable(entries));

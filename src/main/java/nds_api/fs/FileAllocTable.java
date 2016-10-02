@@ -1,6 +1,6 @@
 package nds_api.fs;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.base.Preconditions;
 
 /**
  *
@@ -22,11 +22,9 @@ public final class FileAllocTable {
         this.entries = entries;
     }
 
-    public ImmutableList<FileAllocTableEntry> entries() {
-        return ImmutableList.copyOf(entries);
-    }
-
     public FileAllocTableEntry get(int id) {
+        Preconditions.checkElementIndex(id, entries.length);
+
         return entries[id];
     }
 }
