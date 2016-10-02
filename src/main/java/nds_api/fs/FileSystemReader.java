@@ -32,14 +32,13 @@ public final class FileSystemReader {
     }
 
     public FileSystem read() throws IOException {
-        FileAllocTableEntry[] entries = new FileAllocTableEntry[header.getFatSize()];
-        for (int entryId = 0; entryId < entries.length; entryId++) {
-            int address = mapping.readUIntLE(header.getFatAddress() + (entryId << 2));
-            int size = mapping.readUIntLE() - address;
+        int[] addresses = new int[header.getFatSize()];
+        int[] sizes = new int[header.getFatSize()];
 
-            entries[entryId] = new FileAllocTableEntry(address, size);
+        for (int entryId = 0; entryId < header.getFatSize(); entryId++) {
+            addresses[entryId] = mapping.readUIntLE(header.getFatAddress() + (entryId << 2));
+            sizes[entryId] = mapping.readUIntLE() - addresses[entryId];
         }
-        FileAllocTable fat = new FileAllocTable(entries);
 
         int rootTableOffset = mapping.readUIntLE(header.getFntAddress());
         int somethingElse = mapping.readUShortLE();
@@ -47,6 +46,6 @@ public final class FileSystemReader {
 
         // TODO
 
-        return new FileSystem(fat);
+        return new FileSystem(null);
     }
 }

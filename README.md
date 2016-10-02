@@ -1,5 +1,5 @@
 # NDS API
-A simple to use framework that allows users to extract or make raw use of resources such as images from NDS ROMs. The framework aims for high performing I/O operations and makes use of non-blocking NIO to achieve this. It also aims for a complete thread-safe usage so users may perform I/O operations concurrently.
+A low level API that allows users to extract or make raw use of resources such as images from NDS ROMs. The framework aims for high performing I/O operations and makes use of non-blocking NIO to achieve this. It also aims for a complete thread-safe usage so users may perform I/O operations concurrently. It is recommended to build a domain layer on top of this API.
 
 #### The following file system formats are supported:
   - [ ] NARC (Nitro Archive)
