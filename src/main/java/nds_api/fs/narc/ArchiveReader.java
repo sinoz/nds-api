@@ -1,6 +1,7 @@
 package nds_api.fs.narc;
 
 import nds_api.RomMapping;
+import nds_api.fs.FileAllocTable;
 import nds_api.fs.FileAllocTableEntry;
 
 import java.io.IOException;
@@ -17,6 +18,16 @@ public final class ArchiveReader {
      * The expected file extension of an archive.
      */
     private static final String FILE_EXT = "NARC";
+
+    /**
+     * The expected file extension of the FAT block in this archive.
+     */
+    private static final String FAT_EXT = "BTAF";
+
+    /**
+     * The expected file extension of the FNT block in this archive.
+     */
+    private static final String FNT_EXT = "BTNF";
 
     /**
      * The amount of chunks that we could expect in an archive.
@@ -68,8 +79,46 @@ public final class ArchiveReader {
             throw new IOException();
         }
 
-        // TODO fat block
+        String fatStamp = mapping.readString(4);
+        if (!fatStamp.equals(FAT_EXT)) {
+            throw new IOException();
+        }
 
-        return new Archive();
+        int fatBlockSize = mapping.readUIntLE();
+        int amtFatEntries = mapping.readUIntLE();
+        if (amtFatEntries == 0) {
+            throw new IOException();
+        }
+
+        int minimumBlockSize = (amtFatEntries << 3); // address + size = 8 bytes
+        if (minimumBlockSize > fatBlockSize) {
+            throw new IOException();
+        }
+
+        int[] offsets = new int[amtFatEntries];
+        int[] sizes = new int[amtFatEntries];
+
+        for (int entryId = 0; entryId < amtFatEntries; entryId++) {
+            offsets[entryId] = mapping.readUIntLE();
+            sizes[entryId] = mapping.readUIntLE() - offsets[entryId];
+        }
+
+        String fntStamp = mapping.readString(4);
+        if (!fntStamp.equals(FNT_EXT)) {
+            throw new IOException();
+        }
+
+        int fntBlockSize = mapping.readUIntLE();
+        int entriesOffset = archiveEntry.getAddress() + mapping.readerIndex() + fntBlockSize;
+
+        FileAllocTableEntry[] entries = new FileAllocTableEntry[amtFatEntries];
+        for (int entryId = 0; entryId < amtFatEntries; entryId++) {
+            int address = offsets[entryId] + entriesOffset;
+            int size = sizes[entryId];
+            
+            entries[entryId] = new FileAllocTableEntry(address, size);
+        }
+
+        return new Archive(new FileAllocTable(entries));
     }
 }
