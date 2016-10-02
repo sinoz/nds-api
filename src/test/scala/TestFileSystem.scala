@@ -18,11 +18,16 @@ class TestFileSystem extends FlatSpec {
       val headerReader = new RomHeaderReader(mapping)
       val header = headerReader.read()
 
+      // we only read archive 420 if we're dealing with a rom of the proper game
+      assert(header.getTitle.toString.startsWith("IP"))
+
       val fsReader = new FileSystemReader(mapping, header)
       val fs = fsReader.read()
 
-      val archive = fs.getFat.get(420)
-      val archiveFileExt = mapping.readString(archive.getAddress, 4)
+      val archiveEntry = fs.getFat.get(420)
+      val archiveMapping = mapping.map(archiveEntry.getAddress, archiveEntry.getSize)
+
+      val archiveFileExt = archiveMapping.readString(4)
 
       assert(archiveFileExt.equals("NARC"))
     }
