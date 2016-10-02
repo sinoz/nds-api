@@ -9,4 +9,5 @@ package nds_api.fs.btx0;
  *
  */
 public final class BasicTexturePalette {
+    // TODO
 }

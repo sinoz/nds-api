@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  *
- * Reads the file allocation tables and file name tables of the Nitro file system.
+ * Reads the file allocation tables of the Nitro file system to translate to a {@link FileSystem}.
  *
  * @author Whis
  *
@@ -39,6 +39,9 @@ public final class FileSystemReader {
 
             entries[entryId] = new FileAllocTableEntry(address, size);
         }
+
+        // the file name tables aren't really necessary as we requesting files by id's is more efficient
+        // than by their corresponding name (there are roms that dont store names of files and therefore go by id instead)
 
         return new FileSystem(new FileAllocTable(entries));
     }

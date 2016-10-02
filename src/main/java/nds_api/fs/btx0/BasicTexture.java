@@ -4,7 +4,8 @@ import com.google.common.base.Preconditions;
 
 /**
  *
- * A basic texture file containing a collection of {@link BasicTextureFrame}s and {@link BasicTexturePalette}s.
+ * The context of a basic texture file that consists of a collection of {@link BasicTextureFrame}s
+ * and {@link BasicTexturePalette}s.
  *
  * @author Whis
  *

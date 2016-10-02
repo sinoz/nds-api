@@ -17,4 +17,4 @@ The framework utilizes SBT for dependency management and refers to the following
 The project is compiled to and thus requires at least Java 7. The Scala based tests are compiled with Scala 2.11.8.
 
 #### Credits
-I would like to give credit to the [Tinke](https://github.com/pleonex/tinke) project as it was used as a reference to figure out the complex data structures of the Nitro file system.
+I would like to give credit to the [Tinke](https://github.com/pleonex/tinke) project as it was used as a reference to figure out the complex data structures of the Nitro file system. The NDS documentation of [problemkaput](http://problemkaputt.de/gbatek.htm) was also used as a reference.

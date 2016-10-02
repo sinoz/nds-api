@@ -4,6 +4,8 @@ import nds_api.RomMapping;
 
 /**
  *
+ * Reads data to translate to a {@link BasicTexture}.
+ *
  * @author Whis
  *
  */
