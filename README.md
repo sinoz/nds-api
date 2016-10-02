@@ -8,10 +8,11 @@ A low level API that allows users to extract or make raw use of resources such a
   - [ ] NCLR (Nitro Colour Resource)
 
 #### Requirements
-The framework makes use of the following dependencies:
+The framework utilizes SBT for dependency management and refers to the following dependencies:
   * Netty rev4.1.0
   * Guava rev19
   * JUnit rev4.12
+  * ScalaTest rev3.0
   
 The project is compiled to and thus requires at least Java 7.
 

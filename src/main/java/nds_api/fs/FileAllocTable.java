@@ -1,5 +1,7 @@
 package nds_api.fs;
 
+import com.google.common.collect.ImmutableList;
+
 /**
  *
  * A table of {@link FileAllocTableEntry}s.
@@ -18,6 +20,10 @@ public final class FileAllocTable {
      */
     public FileAllocTable(FileAllocTableEntry[] entries) {
         this.entries = entries;
+    }
+
+    public ImmutableList<FileAllocTableEntry> entries() {
+        return ImmutableList.copyOf(entries);
     }
 
     public FileAllocTableEntry get(int id) {
