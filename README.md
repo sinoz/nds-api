@@ -9,12 +9,12 @@ A low level API that allows users to extract or make raw use of resources such a
 
 #### Requirements
 The framework utilizes SBT for dependency management and refers to the following dependencies:
-  * Netty rev4.1.0
+  * Netty rev4.1.5.Final
   * Guava rev19
   * JUnit rev4.12
   * ScalaTest rev3.0
   
-The project is compiled to and thus requires at least Java 7.
+The project is compiled to and thus requires at least Java 7. The Scala based tests are compiled with Scala 2.11.8.
 
 #### Credits
 I would like to give credit to the [Tinke](https://github.com/pleonex/tinke) project as it was used as a reference to figure out the complex data structures of the Nitro file system.
