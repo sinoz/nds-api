@@ -11,7 +11,6 @@ A low level API that allows users to extract or make raw use of resources such a
 The framework utilizes SBT for dependency management and refers to the following dependencies:
   * Netty rev4.1.5.Final
   * Guava rev19
-  * JUnit rev4.12
   * ScalaTest rev3.0
   
 The project is compiled to and thus requires at least Java 7. The Scala based tests are compiled with Scala 2.11.8.

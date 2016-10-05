@@ -23,6 +23,10 @@ public final class Archive {
         this.fat = fat;
     }
 
+    public int size() {
+        return fat.size();
+    }
+
     public FileAllocTableEntry get(int id) {
         return fat.get(id);
     }

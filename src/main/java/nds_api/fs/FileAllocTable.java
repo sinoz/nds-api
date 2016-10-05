@@ -22,6 +22,10 @@ public final class FileAllocTable {
         this.entries = entries;
     }
 
+    public int size() {
+        return entries.length;
+    }
+
     public FileAllocTableEntry get(int id) {
         Preconditions.checkElementIndex(id, entries.length);
 
